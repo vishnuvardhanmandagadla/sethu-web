@@ -1,0 +1,80 @@
+/* General styles for the Contact component */
+.contact-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #0D1B4C, #1A237E, #0B072A);
+  padding: 2rem;
+  border-radius: 12px;
+}
+
+/* Styles for the contact details section */
+.contact-details {
+  margin-top: 8px;
+}
+
+.contact-info {
+  margin-bottom: 6px;
+}
+
+/* Common styles for all text elements */
+.contact-info h3 {
+  font-size: 1.125rem; /* Equivalent to text-lg */
+  font-weight: 600; /* Equivalent to font-semibold */
+  color: #80d8ff; /* Light blue */
+}
+
+.contact-info p {
+  color: #ffffff; /* White text */
+}
+
+/* Styles for links */
+.contact-info a {
+  color: #64b5f6; /* Light blue for links */
+  text-decoration: none;
+}
+
+.contact-info a:hover {
+  text-decoration: underline; /* Underline on hover */
+}
+
+/* Desktop version styles */
+@media (min-width: 769px) {
+  .contact-container {
+    flex-direction: row;
+  }
+  
+  .contact-details {
+    flex: 0.75;
+    background-color: rgba(0, 0, 0, 0.9); /* Dark background for desktop */
+    padding: 2rem;
+    border-radius: 12px;
+  }
+
+  .earth-canvas {
+    flex: 1;
+    height: auto;
+    min-height: 550px;
+  }
+}
+
+/* Mobile version styles */
+@media (max-width: 768px) {
+  .contact-container {
+    flex-direction: column;
+    padding: 1rem; /* Less padding on mobile */
+  }
+
+  .earth-canvas {
+    height: 350px; /* Specific height for mobile */
+    flex: 1; /* Allow the canvas to grow */
+  }
+
+  .contact-details {
+    flex: 1; /* Full width */
+    padding: 1rem;
+    background-color: rgba(0, 0, 0, 0.9); /* Add dark background for mobile */
+    margin-top: 20px; /* Space between canvas and contact details */
+  }
+}

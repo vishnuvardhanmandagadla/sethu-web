@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Course teachers' website showcasing details, achievements, and contact.">
+    <title>Course Teachers</title>
+    <!-- External CSS & Font -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+       /* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Smooth scrolling effect */
+html {
+    scroll-behavior: smooth; /* Enables smooth scrolling */
+}
+
+/* Full-height sections */
+.section {
+    padding: 100px 20px;
+    height: 100vh; /* Makes each section take up full viewport height */
+}
+
+/* Styling for the header and navbar */
+header {
+    width: 100%;
+    padding: 20px 0;
+    background-color: #ffffff; /* Background color */
+    position: fixed; /* Fixed at the top */
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    border-radius: 10px;
+    border-color: #E64A19;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+/* Navbar Styling */
+.navbar {
+    display: flex;
+    justify-content: space-between; /* Space between logo and nav items */
+    align-items: center; /* Center items vertically */
+}
+
+/* Navigation List */
+.navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 40px; /* Space between links */
+}
+
+/* Navbar Items */
+.navbar ul li {
+    display: inline;
+}
+
+/* Links Styling */
+.navbar ul li a {
+    color: #FF5722; /* Link color */
+    font-size: 1.2rem;
+    text-decoration: none;
+    font-weight: bold;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+/* Hover animation for links */
+.navbar ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: #FF5722; /* Underline color */
+    left: 0;
+    bottom: -5px;
+    transition: width 0.3s ease; /* Smooth underline animation */
+}
+
+/* Hover states */
+.navbar ul li a:hover {
+    color: #E64A19; /* Slightly darker on hover */
+}
+
+.navbar ul li a:hover::after {
+    width: 100%; /* Underline expands on hover */
+}
+
+/* Hamburger Menu */
+.hamburger {
+    display: none; /* Hidden on larger screens */
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 24px;
+    cursor: pointer;
+    z-index: 1010; /* Above the navbar */
+}
+
+.hamburger div {
+    width: 100%;
+    height: 3px;
+    background-color: #FF5722; /* Hamburger lines color */
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+/* Responsive design for mobile */
+@media (max-width: 768px) {
+    .navbar {
+        justify-content: space-between; /* Space between logo and menu */
+    }
+
+    .navbar ul {
+        flex-direction: column; /* Stack links vertically */
+        position: absolute;
+        top: 70px; /* Adjusted based on header height */
+        left: -100%; /* Hidden initially */
+        width: 100%;
+        background-color: #ffffff; /* Background color for mobile menu */
+        border-top: 1px solid #E64A19; /* Border for clarity */
+        gap: 20px; /* Smaller space between links */
+        transition: left 0.3s ease; /* Smooth transition */
+    }
+
+    .navbar ul li {
+        text-align: center;
+        padding: 10px 0; /* Padding for touch targets */
+        width: 100%;
+    }
+
+    .navbar ul li a {
+        font-size: 1rem; /* Slightly smaller font for mobile */
+        color: #FF5722;
+    }
+
+    /* Show the hamburger icon */
+    .hamburger {
+        display: flex; /* Show hamburger menu */
+    }
+
+    /* Active state for mobile menu */
+    .navbar ul.active {
+        left: 0; /* Show the menu */
+    }
+}
+
+/* Hamburger menu animation */
+.hamburger.active div:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.active div:nth-child(2) {
+    opacity: 0; /* Hide middle line */
+}
+
+.hamburger.active div:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+        .hero {
+            background: url('teacher-bg.jpg') center/cover no-repeat;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+        .hero h1 {
+            color: #E64A19;
+            font-size: 4rem;
+            animation: fadeIn 2s;
+        }
+        .hero p {
+            color: aqua;
+            font-size: 1.5rem;
+            margin-top: 20px;
+            animation: fadeInUp 2s;
+        }
+        .about-section, .achievements-section, .contact-section {
+            padding: 80px 15px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        h2::after {
+            content: '';
+            width: 80px;
+            height: 3px;
+            background: #FF5722;
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .about-text {
+            text-align: center;
+            line-height: 1.6;
+            font-size: 1.2rem;
+        }
+     
+        /* Achievements Section */
+.achievements-section {
+    padding: 60px 20px; /* Adequate padding for mobile */
+    text-align: center; /* Center align text */
+}
+
+/* Achievements Grid */
+.achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid with minimum card width */
+    gap: 30px; /* Space between grid items */
+    text-align: center;
+    margin-top: 40px; /* Space above the grid */
+    position: relative; /* Necessary for confetti overlay */
+}
+
+/* Achievement Card */
+.achievement-card {
+    background-color: #fff; /* Card background color */
+    padding: 20px; /* Padding inside the card */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    transition: transform 0.3s ease; /* Smooth hover effect */
+    width: 100%; /* Ensure full width within the grid system */
+}
+
+.achievement-card:hover {
+    transform: scale(1.05); /* Slight scale effect on hover */
+}
+
+/* Achievement Card Title */
+.achievement-card h3 {
+    font-size: 3rem; /* Title font size */
+    color: #FF5722; /* Highlight the number */
+    margin-bottom: 10px; /* Space below the title */
+}
+
+/* Achievement Card Text */
+.achievement-card p {
+    font-size: 1.2rem; /* Text font size */
+    margin-top: 10px; /* Space above the text */
+}
+
+/* Responsive Behavior */
+@media (max-width: 768px) {
+    .achievements-grid {
+        grid-template-columns: 1fr; /* Single column on small screens */
+    }
+
+    .achievement-card {
+        width: 100%; /* Full width card for mobile */
+        padding: 15px; /* Adjust padding for mobile */
+    }
+
+    .achievement-card h3 {
+        font-size: 2.5rem; /* Slightly smaller title font size for mobile */
+    }
+
+    .achievement-card p {
+        font-size: 1rem; /* Adjust text size for mobile */
+    }
+}
+
+/* Container for the logo animation */
+.logo-animation-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 1v25; /* Full screen height */
+    position: relative;
+    background-color: #f4f4f4;
+    overflow: hidden;
+    padding: 0 20px;
+    margin-top: 80px; /* Margin to push the container lower */
+}
+
+/* Logo container */
+.logo-container {
+    transition: transform 1s ease, opacity 1s ease;
+}
+
+/* Logo image */
+.site-logo {
+    width: 150px; /* Initial size */
+    height: auto;
+    border-radius: 50%;
+    transition: width 0.5s ease;
+}
+
+/* Tagline styling */
+.tagline {
+    margin-left: 20px;
+    opacity: 0; /* Initially hidden */
+    white-space: nowrap;
+    font-size: 1.5rem;
+    height: 2rem; /* Set a fixed height */
+    overflow: hidden;
+}
+
+/* Swipe right effect for tagline */
+@keyframes swipeRight {
+    from {
+        transform: translateX(-100%); /* Start from left off-screen */
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0); /* Slide to original position */
+        opacity: 1;
+    }
+}
+
+.tagline-text {
+    display: inline-block;
+    opacity: 0; /* Initially hidden */
+    white-space: nowrap; /* Single line */
+    width: 0;
+    border-right: 2px solid transparent;
+    overflow: hidden;
+    transition: opacity 1s ease;
+    
+}
+
+/* Move logo to the left */
+.move-logo {
+    transform: translateX(-2vw); /* Move the logo to a fixed left position */
+    opacity: 1;
+}
+
+/* Make sure the logo stays in the left position */
+.locked-logo {
+    transform: translateX(1vw); /* Keep it fixed at this position */
+}
+
+/* Show tagline */
+.show-tagline {
+    opacity: 1;
+    animation: swipeRight 1.5s ease forwards; /* Smooth swipe effect */
+    width: auto;
+    height: auto;
+    margin-top: 4%;
+}
+
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .contact-form input, .contact-form textarea {
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        .contact-form button {
+            padding: 15px;
+            background-color: #FF5722;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+        .contact-form button:hover {
+            background-color: #E64A19;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+  
+
+/* Contact Section */
+.contact-section {
+    background-color: #ffffff; /* White background */
+    padding: 60px 20px;
+    color: #02050c; /* Dark blue text color */
+    text-align: center;
+    position: relative;
+    border-top: 5px solid #000000; /* Gold border at the top */
+}
+
+.contact-section h2 {
+    font-size: 40px;
+    color: #0d1b36; /* Dark blue for title */
+    margin-bottom: 50px;
+    text-transform: uppercase;
+}
+
+.contact-details {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.contact-info {
+    flex: 1 1 300px;
+    background-color: #f9f9f9; /* Light gray for contrast against white */
+    padding: 20px;
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: left;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+}
+
+.contact-info:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2); /* Shadow on hover */
+}
+
+.contact-info h3 {
+    font-size: 22px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    color: black; /* Gold for headings */
+}
+
+.contact-info h3 i {
+    margin-right: 10px;
+    color: orangered; /* Gold color for icons */
+}
+
+.contact-info p {
+    font-size: 16px;
+    color: #333;
+    line-height: 1.6;
+    margin: 10px 0;
+}
+
+.contact-info a {
+    color: #040b19; /* Dark blue for links */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.contact-info a:hover {
+    color: orangered; /* Hover effect to gold */
+    text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .contact-details {
+        flex-direction: column;
+        gap: 20px;
+    }
+}
+/* From Uiverse.io by Smit-Prajapati */ 
+/* From Uiverse.io by Centered101 */ 
+.card {
+  width: 380px;
+  height: 380px;
+  background: white;
+  border-radius: 32px;
+  padding: 3px;
+  position: relative;
+  box-shadow: #604b4a30 0px 70px 30px -50px;
+  transition: all 0.5s ease-in-out;
+}
+
+.card .mail {
+  position: absolute;
+  right: 2rem;
+  top: 1.4rem;
+  background: transparent;
+  border: none;
+}
+
+.card .mail svg {
+  stroke: #fbb9b6;
+  stroke-width: 3px;
+}
+
+.card .mail svg:hover {
+  stroke: #56f598;
+}
+
+.card .profile-pic {
+  position: absolute;
+  width: calc(100% - 6px);
+  height: calc(100% - 6px);
+  top: 3px;
+  left: 3px;
+  border-radius: 29px;
+  z-index: 1;
+  border: 0px solid #fbb9b6;
+  overflow: hidden;
+  transition: all 0.5s ease-in-out 0.2s, z-index 0.5s ease-in-out 0.2s;
+}
+
+.card .profile-pic img {
+  -o-object-fit: cover;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  -o-object-position: 0px 0px;
+  object-position: 0px 0px;
+  transition: all 0.5s ease-in-out 0s;
+}
+
+.card .profile-pic svg {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+  -o-object-position: 0px 0px;
+  object-position: 0px 0px;
+  transform-origin: 45% 20%;
+  transition: all 0.5s ease-in-out 0s;
+}
+
+.card .bottom {
+  position: absolute;
+  bottom: 3px;
+  left: 3px;
+  right: 3px;
+  background: #fbb9b6;
+  top: 80%;
+  border-radius: 29px;
+  z-index: 2;
+  box-shadow: rgba(96, 75, 74, 0.1882352941) 0px 5px 5px 0px inset;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1) 0s;
+}
+
+.card .bottom .content {
+  position: absolute;
+  bottom: 0;
+  left: 1.5rem;
+  right: 1.5rem;
+  height: 160px;
+}
+
+.card .bottom .content .name {
+  display: block;
+  font-size: 1.2rem;
+  color: white;
+  font-weight: bold;
+}
+
+.card .bottom .content .about-me {
+  display: block;
+  font-size: 0.9rem;
+  color: white;
+  margin-top: 1rem;
+}
+
+.card .bottom .bottom-bottom {
+  position: absolute;
+  bottom: 1rem;
+  left: 1.5rem;
+  right: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card .bottom .bottom-bottom .social-links-container {
+  display: flex;
+  gap: 1rem;
+}
+
+.card .bottom .bottom-bottom .social-links-container svg {
+  height: 20px;
+  fill: white;
+  filter: drop-shadow(0 5px 5px rgba(165, 132, 130, 0.1333333333));
+}
+
+.card .bottom .bottom-bottom .social-links-container svg:hover {
+  fill: #f55d56;
+  transform: scale(1.2);
+}
+
+.card .bottom .bottom-bottom .button {
+  background: white;
+  color: #fbb9b6;
+  border: none;
+  border-radius: 20px;
+  font-size: 0.6rem;
+  padding: 0.4rem 0.6rem;
+  box-shadow: rgba(165, 132, 130, 0.1333333333) 0px 5px 5px 0px;
+}
+
+.card .bottom .bottom-bottom .button:hover {
+  background: #f55d56;
+  color: white;
+}
+
+.card:hover {
+  border-top-left-radius: 55px;
+}
+
+.card:hover .bottom {
+  top: 20%;
+  border-radius: 80px 29px 29px 29px;
+  transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1) 0.2s;
+}
+
+.card:hover .profile-pic {
+  width: 100px;
+  height: 100px;
+  aspect-ratio: 1;
+  top: 10px;
+  left: 10px;
+  border-radius: 50%;
+  z-index: 3;
+  border: 7px solid #fbb9b6;
+  box-shadow: rgba(96, 75, 74, 0.1882352941) 0px 5px 5px 0px;
+  transition: all 0.5s ease-in-out, z-index 0.5s ease-in-out 0.1s;
+}
+
+.card:hover .profile-pic:hover {
+  transform: scale(1.3);
+  border-radius: 0px;
+}
+
+.card:hover .profile-pic img {
+  transform: scale(2.5);
+  -o-object-position: 0px 25px;
+  object-position: 0px 25px;
+  transition: all 0.5s ease-in-out 0.5s;
+}
+
+.card:hover .profile-pic svg {
+  transform: scale(2.5);
+  transition: all 0.5s ease-in-out 0.5s;
+}
+.profile {
+    display: flex;
+    justify-content: center; /* Centers the section horizontally */
+    align-items: center;     /* Centers the section vertically */
+    height: 100vh;           /* Makes the section take full viewport height */
+}
+.emptydiv {
+  width: 500px; /* Set the width */
+  height: 50px; /* Set the height, same as width to make it a square */
+   /* Optional: transparent or any background colo /* Optional: add a border to make it visible */
+ /* Optional: add some margin if needed */
+}
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <div class="hamburger">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <ul>
+                <li><a href="#hero-section">Home</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#achievements">Achievements</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+
+    <div class="logo-animation-container" id="logo-animation-container">
+        <div class="logo-container">
+            <img src="sethlogo.jpg" alt="Site Logo" class="site-logo" />
+        </div>
+        <div class="tagline">
+            <h2 class="tagline-text"># WHY CAN'T WE DO.</h2>
+        </div>
+    </div>
+    
+    
+    
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero-section">
+        <div>
+            <h1 data-aos="fade-in">Skill</h1>
+            <p data-aos="fade-up">Learn from the best, achieve the best.</p>
+        </div>
+    </section>
+    <section class="profile" id="profile-section">
+        
+<div class="card">
+  <button class="mail">
+    <svg
+      class="lucide lucide-mail"
+      stroke-linejoin="round"
+      stroke-linecap="round"
+      stroke-width="2"
+      stroke="currentColor"
+      fill="none"
+      viewBox="0 0 24 24"
+      height="24"
+      width="24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <rect rx="2" y="4" x="2" height="16" width="20"></rect>
+      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+    </svg>
+  </button>
+  <div class="profile-pic">
+    <img src="SETHU.png" alt="Profile Image" />
+
+  </div>
+  <div class="bottom">
+    <div class="content">
+      <span class="name">My Name</span>
+      <span class="about-me"
+        >Lorem ipsum dolor sit amet consectetur adipisicinFcls
+      </span>
+    </div>
+    <div class="bottom-bottom">
+      <div class="social-links-container">
+        <svg
+          viewBox="0 0 16 15.999"
+          height="15.999"
+          width="16"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            transform="translate(6 598)"
+            d="M6-582H-2a4,4,0,0,1-4-4v-8a4,4,0,0,1,4-4H6a4,4,0,0,1,4,4v8A4,4,0,0,1,6-582ZM2-594a4,4,0,0,0-4,4,4,4,0,0,0,4,4,4,4,0,0,0,4-4A4.005,4.005,0,0,0,2-594Zm4.5-2a1,1,0,0,0-1,1,1,1,0,0,0,1,1,1,1,0,0,0,1-1A1,1,0,0,0,6.5-596ZM2-587.5A2.5,2.5,0,0,1-.5-590,2.5,2.5,0,0,1,2-592.5,2.5,2.5,0,0,1,4.5-590,2.5,2.5,0,0,1,2-587.5Z"
+            data-name="Subtraction 4"
+            id="Subtraction_4"
+          ></path>
+        </svg>
+        <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"
+          ></path>
+        </svg>
+
+        <svg viewBox="0 0 496 512" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"
+          ></path>
+        </svg>
+      </div>
+      <button class="button">Contact Me</button>
+    </div>
+  </div>
+</div> 
+<div class="emptydiv">
+
+</div>
+
+<div class="card">
+    <button class="mail">
+      <svg
+        class="lucide lucide-mail"
+        stroke-linejoin="round"
+        stroke-linecap="round"
+        stroke-width="2"
+        stroke="currentColor"
+        fill="none"
+        viewBox="0 0 24 24"
+        height="24"
+        width="24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <rect rx="2" y="4" x="2" height="16" width="20"></rect>
+        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+      </svg>
+    </button>
+    <div class="profile-pic">
+      <img src="SETHU.png" alt="Profile Image" />
+  
+    </div>
+    <div class="bottom">
+      <div class="content">
+        <span class="name">My Name</span>
+        <span class="about-me"
+          >Lorem ipsum dolor sit amet consectetur adipisicinFcls
+        </span>
+      </div>
+      <div class="bottom-bottom">
+        <div class="social-links-container">
+          <svg
+            viewBox="0 0 16 15.999"
+            height="15.999"
+            width="16"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              transform="translate(6 598)"
+              d="M6-582H-2a4,4,0,0,1-4-4v-8a4,4,0,0,1,4-4H6a4,4,0,0,1,4,4v8A4,4,0,0,1,6-582ZM2-594a4,4,0,0,0-4,4,4,4,0,0,0,4,4,4,4,0,0,0,4-4A4.005,4.005,0,0,0,2-594Zm4.5-2a1,1,0,0,0-1,1,1,1,0,0,0,1,1,1,1,0,0,0,1-1A1,1,0,0,0,6.5-596ZM2-587.5A2.5,2.5,0,0,1-.5-590,2.5,2.5,0,0,1,2-592.5,2.5,2.5,0,0,1,4.5-590,2.5,2.5,0,0,1,2-587.5Z"
+              data-name="Subtraction 4"
+              id="Subtraction_4"
+            ></path>
+          </svg>
+          <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"
+            ></path>
+          </svg>
+  
+          <svg viewBox="0 0 496 512" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"
+            ></path>
+          </svg>
+        </div>
+        <button class="button">Contact Me</button>
+      </div>
+    </div>
+  </div>
+    </section>        
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <h2 data-aos="fade-in">About Us</h2>
+        <p class="about-text" data-aos="fade-up">
+            Our teaching team consists of two highly skilled professionals, John Doe and Jane Smith, 
+            who have dedicated their lives to education and helping students achieve their potential. 
+            With years of experience and a passion for innovation in education, they have received numerous awards 
+            for their teaching excellence.
+        </p>
+    </section>
+
+
+<!-- Achievements Section -->
+<section class="achievements-section" id="achievements">
+    <h2 data-aos="fade-in">Achievements</h2>
+    <p class="about-text" data-aos="fade-up">
+        Our graduates have excelled in various industries, and we’ve received numerous accolades for our excellence in training and education.
+    </p>
+    <div class="achievements-grid" id="counters">
+        <div class="achievement-card" data-aos="fade-up">
+            <h3><span class="counter" data-target="256">0</span>+</h3>
+            <p>Students Certified</p>
+        </div>
+        <div class="achievement-card" data-aos="fade-up">
+            <h3><span class="counter" data-target="150">0</span>+</h3>
+            <p>Industry Partners</p>
+        </div>
+        <div class="achievement-card" data-aos="fade-up">
+            <h3><span class="counter" data-target="50">0</span>+</h3>
+            <p>Workshops Conducted</p>
+        </div>
+    </div>
+</section>
+
+
+    
+
+    <section class="contact-section" id="contact">
+        <h2>Get in Touch</h2>
+        
+        <div class="contact-details">
+            <!-- Address Section -->
+            <div class="contact-info" data-aos="fade-up">
+                <h3><i class="fas fa-map-marker-alt"></i> Address</h3>
+                <p>SETHU (Skill Enhancement Training and Hands-on Understanding)</p>
+                <p>SETHU (Skill Enhancement Training and Hands-on Understanding)</p>
+            </div>
+    
+            <!-- Contact Section -->
+            <div class="contact-info" data-aos="fade-up">
+                <h3><i class="fas fa-phone-alt"></i> Contact</h3>
+                <p><a href="tel:+917386552665282999">(+91) 738652352999</a></p>
+                <p><a href="tel:+9191543454740561">(+91) 9154340532516561</a></p>
+                <p><a href="tel:+919154343260549">(+91) 91543400934u549</a></p>
+            </div>
+    
+            <!-- Email Section -->
+            <div class="contact-info" data-aos="fade-up">
+                <h3><i class="fas fa-envelope"></i> Mail</h3>
+                <p><a href="mailto:SETHU (Skill Enhancement Training and Hands-on Understanding)@rietrjy.co.in">SETHU (Skill Enhancement Training and Hands-on Understanding).co.in</a></p>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer>
+        &copy; 2024 Course Teachers. All rights reserved.
+    </footer>
+
+    <!-- External JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti/dist/confetti.browser.min.js"></script> <!-- Include confetti library -->
+
+
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-analytics.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+    
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      const firebaseConfig = {
+        apiKey: "AIzaSyDQVsDQSDseqAODi1bPVv_8n9PuaJTh9zg",
+        authDomain: "sethu-sbp.firebaseapp.com",
+        databaseURL: "https://sethu-sbp-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "sethu-sbp",
+        storageBucket: "sethu-sbp.appspot.com",
+        messagingSenderId: "816384006008",
+        appId: "1:816384006008:web:1ce0c8a45f9f756058da8d",
+        measurementId: "G-M7EJ6MH5VW"
+      };
+    
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const analytics = getAnalytics(app);
+
+      
+   
+
+      document.addEventListener('DOMContentLoaded', () => {
+    const counters = document.querySelectorAll('.counter');
+    let counterTriggered = false;
+
+    // Function to trigger confetti
+    const triggerConfetti = () => {
+        confetti({
+            particleCount: 100,
+            spread: 90,
+            origin: { y: 0.6 },
+            colors: ['#FF4500', '#FF8C00', '#FFD700', '#32CD32', '#00CED1'],
+        });
+    };
+
+    // Function to start the counters animation
+    const startCounters = () => {
+        if (!counterTriggered) {
+            counters.forEach(counter => {
+                const updateCounter = () => {
+                    const target = +counter.getAttribute('data-target');
+                    const count = +counter.innerText;
+                    const increment = target / 100;
+
+                    if (count < target) {
+                        counter.innerText = Math.ceil(count + increment);
+                        setTimeout(updateCounter, 20);
+                    } else {
+                        counter.innerText = target;
+                    }
+                };
+                updateCounter();
+            });
+
+            // Trigger confetti effect for celebration
+            triggerConfetti();
+            counterTriggered = true;
+        }
+    };
+
+    // Function to trigger when the achievements section reaches the specified threshold
+    const observeAchievementsSection = () => {
+        const achievementsSection = document.getElementById('achievements');
+
+        // Set a lower threshold for mobile devices (screen width < 768px)
+        const isMobile = window.innerWidth < 768;
+        const observerOptions = {
+            threshold: isMobile ? 0.6 : 0.8,  // 60% for mobile, 80% for desktop
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    startCounters();
+                    observer.disconnect(); // Stop observing once triggered
+                }
+            });
+        }, observerOptions);
+
+        observer.observe(achievementsSection);
+    };
+
+    // Call the observer function to start observing the section
+    observeAchievementsSection();
+});
+
+
+
+window.addEventListener('scroll', () => {
+    const logoContainer = document.querySelector('.logo-container');
+    const tagline = document.querySelector('.tagline');
+    const scrollPosition = window.scrollY;
+
+    // Move logo and reveal tagline when scroll reaches a specific position
+    if (scrollPosition > 100) {
+        logoContainer.classList.add('move-logo');
+
+        // Ensure the logo doesn't move further once it's in position
+        setTimeout(() => {
+            logoContainer.classList.add('locked-logo'); // Locks the logo at the final position
+            tagline.classList.add('show-tagline'); // Show the tagline after the logo is locked
+            const taglineText = document.querySelector('.tagline-text');
+            taglineText.style.opacity = '1';
+            taglineText.style.width = '100%';
+        }, 1000); // Delay tagline appearance until the logo has moved
+    }
+});
+
+
+
+// Select the hamburger and navigation menu
+const hamburger = document.querySelector('.hamburger');
+const navMenu = document.querySelector('.navbar ul');
+
+// Toggle the mobile menu when the hamburger is clicked
+hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    navMenu.classList.toggle('active');
+});
+
+
+        AOS.init({
+            duration: 1200, // Animation duration
+        });
+    </script>
+
+</body>
+</html>

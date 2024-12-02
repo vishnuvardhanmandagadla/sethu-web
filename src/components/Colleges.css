@@ -1,0 +1,98 @@
+/* Global Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Root Color Variables */
+:root {
+  --primary-color: #6C3BA3; /* Violet highlights */
+  --secondary-color: #345781; /* Subtle blue glow */
+  --bg-dark-navy: #0A0D1A; /* Dark navy for background */
+  --bg-deep-blue: #1B3D5F; /* Deep blue */
+  --text-white: #ffffff;
+  --text-secondary: #b0b0b0;
+}
+
+body {
+  background: var(--bg-dark-navy);
+  color: var(--text-white);
+}
+
+/* Colleges Section */
+.collegess {
+  background: linear-gradient(135deg, var(--bg-dark-navy), var(--bg-deep-blue));
+  padding: 60px 0;
+  min-height: 100vh; /* Full viewport height on desktop */
+  position: relative;
+  overflow: hidden;
+  color: var(--text-white);
+}
+
+@keyframes slide {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.logoss {
+  overflow: hidden;
+  display: flex;
+  white-space: nowrap;
+}
+
+.logoss-slide {
+  display: flex;
+  animation: slide 35s linear infinite;
+}
+
+.college-item {
+  position: relative;
+  width: 300px;
+  max-width: 100%;
+  margin: 0 30px;
+  text-align: center;
+  color: var(--text-white);
+}
+
+.college-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0px 4px 15px var(--secondary-color);
+}
+
+.overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.8);
+  color: var(--text-white);
+  padding: 12px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  border-radius: 10px;
+}
+
+.college-item:hover .overlay {
+  opacity: 1;
+}
+
+.upload-button {
+  padding: 10px 20px;
+  background-color: var(--primary-color);
+  color: var(--text-white);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.upload-button:hover {
+  background-color: var(--secondary-color);
+}

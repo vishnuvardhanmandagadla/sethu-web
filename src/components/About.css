@@ -1,0 +1,58 @@
+/* About.css */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 1s ease-in-out forwards;
+}
+
+.animate-slideUp {
+  animation: slideUp 0.5s ease-in-out forwards;
+}
+
+/* General Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background: #f2f2f2;
+  color: #333;
+}
+
+/* Section Specific Styles */
+section {
+  padding: 60px 0;
+}
+
+h2, h3 {
+  color: #fbbf24; /* A vibrant yellow for headings */
+}
+
+p {
+  line-height: 1.6;
+}
+
+.list-disc {
+  list-style-type: disc;
+}

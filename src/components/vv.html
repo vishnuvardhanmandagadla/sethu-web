@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Achievements Section</title>
+    <style>
+        /* Achievements Section */
+        .achievements-section {
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        /* Achievements Grid */
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            text-align: center;
+            margin-top: 40px;
+            position: relative;
+        }
+
+        .achievement-card {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            width: 100%;
+            border: 4px solid;
+            border-image: linear-gradient(45deg, #03071E, #370617, #6A040F, #9D0208, #D00000, #DC2F02, #E85D04, #F48C06, #FAA307, #FFBA08) 1;
+        }
+
+        .achievement-card.glow {
+            box-shadow: 0 0 30px rgba(255, 186, 8, 0.7);
+            transform: scale(1.05);
+        }
+
+        .achievement-card:hover {
+            transform: scale(1.05);
+        }
+
+        /* Achievement Card Title */
+        .achievement-card h3 {
+            font-size: 3rem;
+            color: #FF5722;
+            margin-bottom: 10px;
+        }
+
+        /* Achievement Card Text */
+        .achievement-card p {
+            font-size: 1.2rem;
+            margin-top: 10px;
+        }
+
+        /* Responsive Behavior */
+        @media (max-width: 768px) {
+            .achievements-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .achievement-card {
+                padding: 15px;
+            }
+
+            .achievement-card h3 {
+                font-size: 2.5rem;
+            }
+
+            .achievement-card p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Achievements Section -->
+    <section class="achievements-section" id="achievements">
+        <h2 data-aos="fade-in">Achievements</h2>
+        <p class="about-text" data-aos="fade-up">
+            Our graduates have excelled in various industries, and we’ve received numerous accolades for our excellence in training and education.
+        </p>
+        <div class="achievements-grid" id="counters">
+            <div class="achievement-card" data-aos="fade-up">
+                <h3><span class="counter" data-target="256">0</span>+</h3>
+                <p>Students Certified</p>
+            </div>
+            <div class="achievement-card" data-aos="fade-up">
+                <h3><span class="counter" data-target="150">0</span>+</h3>
+                <p>Industry Partners</p>
+            </div>
+            <div class="achievement-card" data-aos="fade-up">
+                <h3><span class="counter" data-target="50">0</span>+</h3>
+                <p>Workshops Conducted</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const counters = document.querySelectorAll('.counter');
+            let counterTriggered = false;
+
+            // Function to trigger confetti
+            const triggerConfetti = () => {
+                confetti({
+                    particleCount: 100,
+                    spread: 90,
+                    origin: { y: 0.6 },
+                    colors: ['#FF4500', '#FF8C00', '#FFD700', '#32CD32', '#00CED1'],
+                });
+            };
+
+            // Function to start the counters animation
+            const startCounters = () => {
+                if (!counterTriggered) {
+                    counters.forEach(counter => {
+                        const updateCounter = () => {
+                            const target = +counter.getAttribute('data-target');
+                            const count = +counter.innerText;
+                            const increment = target / 100;
+
+                            if (count < target) {
+                                counter.innerText = Math.ceil(count + increment);
+                                setTimeout(updateCounter, 20);
+                            } else {
+                                counter.innerText = target;
+                            }
+                        };
+                        updateCounter();
+                    });
+
+                    triggerConfetti();
+                    counterTriggered = true;
+                }
+            };
+
+            // Function to trigger when the achievements section reaches the specified threshold
+            const observeAchievementsSection = () => {
+                const achievementsSection = document.getElementById('achievements');
+                const isMobile = window.innerWidth < 768;
+                const observerOptions = {
+                    threshold: isMobile ? 0.6 : 0.8,
+                };
+
+                const observer = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            startCounters();
+                            observer.disconnect();
+                        }
+                    });
+                }, observerOptions);
+
+                observer.observe(achievementsSection);
+            };
+
+            observeAchievementsSection();
+        });
+    </script>
+
+</body>
+</html>

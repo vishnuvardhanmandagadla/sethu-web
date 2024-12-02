@@ -1,0 +1,31 @@
+.program-cards-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.program-cards {
+  display: flex;
+  width: max-content;
+  flex-wrap: nowrap;
+  transition: transform 0.1s linear;
+}
+
+.program-cards .card {
+  flex-shrink: 0;
+  width: 16rem; /* Adjust width as needed */
+  margin-right: 20px; /* Space between cards */
+}
+
+.program-cards img {
+  border-radius: 10px;
+}
+
+/* Ensure smooth scrolling and proper card positioning */
+@keyframes scrollLeft {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}

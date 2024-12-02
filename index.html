@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SETHU - Skill Enhancement Training</title>
+    <meta name="description" content="SETHU - Skill Enhancement Training and Hands on Understanding" />
+    <style>
+      /* Ensure the body and #root occupy the full screen height and width */
+      body, html {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        font-family: 'Arial', sans-serif;
+        overflow: hidden; /* Prevent scrolling on the body */
+      }
+
+      #root {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%; /* Ensure it takes full height */
+        width: 1000%; /* Ensure it takes full width */
+        overflow: auto; /* Allow scrolling within #root if needed */
+      }
+
+      /* Responsive styles */
+      @media (max-width: 768px) {
+        body {
+          font-size: 14px; /* Adjust font size for smaller screens */
+        }
+
+        #root {
+          padding: 0 10px; /* Add padding for mobile to prevent touching edges */
+        }
+      }
+      
+    </style>
+    <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    rel="stylesheet"
+  />
+  
+  
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

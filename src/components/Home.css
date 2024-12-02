@@ -1,0 +1,88 @@
+/* Base styles */
+#hero-section {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+#hero-section .gradient-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom right, transparent 60%, #002D62 100%);
+    opacity: 0.5;
+    mask-image: linear-gradient(to top right, transparent 60%, black 100%);
+}
+
+#hero-section .content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 768px;
+    padding: 1.5rem;
+    color: white; /* Default color */
+    
+}
+
+#hero-section .btn-learn-more {
+    background-color: #008080;
+    color: white;
+    font-weight: 600;
+    font-size: 1.125rem;
+    padding: 0.75rem 2rem;
+    border-radius: 9999px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+#hero-section .btn-learn-more:hover {
+    background-color: #FF6F00;
+    transform: scale(1.05);
+}
+
+/* Mobile-specific styles */
+@media (max-width: 768px) {
+    #hero-section {
+        background-position: 40% center; /* Slightly shift background to the left */
+    }
+
+    #hero-section .content {
+        padding: 1rem;
+        margin-top: -120px; /* Move content slightly up */
+        color: black; /* Change text color to black for mobile */
+        text-align: center; /* Ensure proper alignment on mobile */
+    }
+
+    #hero-section h2 {
+        color: #FFFFFF; /* White for headers */
+        margin-top: 50px; /* Add spacing below the header */
+    }
+
+    #hero-section p {
+        color: #FFFFFF; /* White for the paragraph */
+        margin-bottom: 70px; /* Add spacing below the paragraph */
+    }
+
+    #hero-section .btn-learn-more {
+        background-color: #002D62; /* Dark blue for the button */
+        color: white;
+        padding: 12px 24px;
+        font-size: 1rem; /* Adjust button size for mobile */
+        display: inline-block;
+        text-transform: uppercase;
+        margin-top: 10px; /* Add spacing above the button */
+    }
+
+    #hero-section .btn-learn-more:hover {
+        background-color: #001a40; /* Even darker blue on hover */
+    }
+}
+

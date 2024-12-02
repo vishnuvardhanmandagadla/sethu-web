@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SETHU Animation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(45deg, #10451D, #2DC653);
+            font-family: Arial, sans-serif;
+            color: #10451D;
+            overflow: hidden;
+        }
+
+        .welcome {
+            font-size: 3rem;
+            color: #92E6A7;
+            opacity: 0;
+            transition: opacity 1.5s ease-in;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .letter-container {
+            display: flex;
+            align-items: center;
+            position: relative;
+            font-size: 4rem;
+            transition: transform 0.5s ease;
+            color: #6EDE8A;
+        }
+
+        .letter {
+            opacity: 0;
+            transition: opacity 0.5s ease, text-shadow 0.5s ease;
+        }
+
+        .letter.glow {
+            opacity: 1;
+            text-shadow: 0 0 10px #25A244, 0 0 20px #4AD66D, 0 0 30px #6EDE8A;
+        }
+
+        .full-form-item {
+            font-size: 3rem;
+            position: absolute;
+            left: 45px;
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            white-space: nowrap;
+            color: #B7EFC5;
+        }
+
+        .full-form-item.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .full-form-glow {
+            text-shadow: 0 0 15px #208B3A, 0 0 30px #92E6A7;
+        }
+    </style>
+</head>
+<body>
+    <div class="welcome" id="welcomeText">Welcome to</div>
+    <div class="container">
+        <div class="letter-container" id="containerS">
+            <span class="letter" id="letterS">S</span>
+            <span class="full-form-item" id="skill">kill</span>
+        </div>
+        <div class="letter-container" id="containerE">
+            <span class="letter" id="letterE">E</span>
+            <span class="full-form-item" id="enhancement">nhancement</span>
+        </div>
+        <div class="letter-container" id="containerT">
+            <span class="letter" id="letterT">T</span>
+            <span class="full-form-item" id="training">raining</span>
+        </div>
+        <div class="letter-container" id="containerH">
+            <span class="letter" id="letterH">H</span>
+            <span class="full-form-item" id="handsOn">ands on</span>
+        </div>
+        <div class="letter-container" id="containerU">
+            <span class="letter" id="letterU">U</span>
+            <span class="full-form-item" id="understanding">nderstanding</span>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Fade in "Welcome to" message
+            const welcomeText = document.getElementById("welcomeText");
+            welcomeText.style.opacity = 1;
+
+            // Array of letters and corresponding full-form words
+            const letterElements = [
+                { letterId: 'letterS', fullFormId: 'skill', containerId: 'containerS', backwardMove: '-530px' },
+                { letterId: 'letterE', fullFormId: 'enhancement', containerId: 'containerE', backwardMove: '-450px' },
+                { letterId: 'letterT', fullFormId: 'training', containerId: 'containerT', backwardMove: '-163px' },
+                { letterId: 'letterH', fullFormId: 'handsOn', containerId: 'containerH', backwardMove: '15px' },
+                { letterId: 'letterU', fullFormId: 'understanding', containerId: 'containerU', backwardMove: '190px' }
+            ];
+
+            // Show glow effect for each letter with delays
+            setTimeout(() => {
+                letterElements.forEach((element, index) => {
+                    setTimeout(() => {
+                        const letter = document.getElementById(element.letterId);
+                        letter.classList.add('glow');
+                    }, index * 700);
+                });
+
+                // Start showing each full-form word and move each letter backward individually
+                setTimeout(() => {
+                    letterElements.forEach((element, index) => {
+                        setTimeout(() => {
+                            const fullForm = document.getElementById(element.fullFormId);
+                            const letterContainer = document.getElementById(element.containerId);
+
+                            fullForm.classList.add('visible');
+                            letterContainer.style.transform = `translateX(${element.backwardMove})`;
+                        }, index * 500);
+                    });
+
+                    // Apply glow effect to the entire full-form text after adjustments
+                    setTimeout(() => {
+                        document.querySelectorAll(".full-form-item").forEach(item => {
+                            item.classList.add("full-form-glow");
+                        });
+                    }, 3000);
+                }, letterElements.length * 700);
+            }, 1500); // Start "SETHU" animation after "Welcome to" fade-in completes
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Employee Management</title>
+
+  <!-- Firebase SDK -->
+  <script defer src="/__/firebase/10.14.1/firebase-app-compat.js"></script>
+  <script defer src="/__/firebase/10.14.1/firebase-auth-compat.js"></script>
+  <script defer src="/__/firebase/10.14.1/firebase-database-compat.js"></script>
+  <script defer src="/__/firebase/10.14.1/firebase-firestore-compat.js"></script>
+  <script defer src="/__/firebase/init.js"></script>
+
+  <style>
+    body {
+      background: #ECEFF1;
+      color: rgba(0, 0, 0, 0.87);
+      font-family: Roboto, Helvetica, Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    #employeeForm,
+    #employeeTable {
+      background: white;
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 16px;
+      border-radius: 3px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    }
+
+    h2 {
+      color: #039be5;
+      font-weight: bold;
+      margin: 0 0 16px;
+    }
+
+    input[type="number"],
+    input[type="text"],
+    input[type="date"] {
+      width: calc(100% - 22px);
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      background: #039be5;
+      color: white;
+      padding: 10px 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #0288d1;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    table,
+    th,
+    td {
+      border: 1px solid #ccc;
+    }
+
+    th,
+    td {
+      padding: 8px;
+      text-align: left;
+    }
+
+    .attendance-switch {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .switch-label {
+      margin-left: 10px;
+      font-weight: bold;
+    }
+
+    .attendance-buttons {
+      display: flex;
+      justify-content: center;
+    }
+
+    .attendance-buttons button {
+      margin: 0 5px;
+      padding: 8px;
+      border-radius: 4px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .present.active {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    .absent.active {
+      background-color: #F44336;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+<div id="employeeForm">
+  <h2>Add New Employee</h2>
+  <form id="newEmployeeForm">
+    <input type="text" id="employeeName" placeholder="Employee Name" required>
+    <input type="date" id="joiningDate" placeholder="Joining Date" required>
+    <input type="number" id="perDaySalary" placeholder="Per Day Salary" min="0" required>
+    <button type="submit">Add Employee</button>
+  </form>
+</div>
+
+<div id="employeeTable">
+  <h2>Employee List</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Joining Date</th>
+        <th>Per Day Salary</th>
+        <th>Attendance Record</th>
+        <th>Total Salary</th>
+      </tr>
+    </thead>
+    <tbody id="employeeList">
+      <!-- Employee rows will be inserted here -->
+    </tbody>
+  </table>
+</div>
+
+<p id="load">Firebase SDK Loading&hellip;</p>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const loadEl = document.querySelector('#load');
+    const employeeForm = document.querySelector('#newEmployeeForm');
+    const employeeList = document.querySelector('#employeeList');
+    let employeesData = {};  // To store employee data locally for updates
+
+    try {
+      let app = firebase.app();
+      loadEl.textContent = 'Firebase SDK loaded successfully!';
+
+      const db = firebase.database();
+
+      // Listen for form submission to add new employee
+      employeeForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const name = document.getElementById('employeeName').value;
+        const joiningDate = document.getElementById('joiningDate').value;
+        const perDaySalary = parseInt(document.getElementById('perDaySalary').value);
+
+        // Push data to Realtime Database
+        const newEmployeeRef = firebase.database().ref('employees').push();
+        newEmployeeRef.set({
+          name: name,
+          joiningDate: joiningDate,
+          perDaySalary: perDaySalary,
+          attendance: {}, // Initialize empty attendance record
+          totalSalary: 0   // Initialize total salary
+        });
+
+        employeeForm.reset();
+        loadEmployees();
+      });
+
+      // Function to load employees from Realtime Database
+      function loadEmployees() {
+        employeeList.innerHTML = '';  // Clear the table
+        firebase.database().ref('employees').on('value', (snapshot) => {
+          employeesData = snapshot.val();
+          if (employeesData) {
+            Object.keys(employeesData).forEach(key => {
+              const employee = employeesData[key];
+              const totalSalary = calculateTotalSalary(employee.attendance, employee.perDaySalary);
+              const attendanceRecord = createAttendanceRecord(employee.attendance, key);
+
+              employeeList.innerHTML += `
+                <tr>
+                  <td>${employee.name}</td>
+                  <td>${employee.joiningDate}</td>
+                  <td>${employee.perDaySalary}</td>
+                  <td>
+                    <div>${attendanceRecord}</div>
+                    <input type="date" class="attendance-date" id="date_${key}" />
+                    <button onclick="markAttendance('${key}')">Update Attendance</button>
+                  </div>
+                  <td>${totalSalary}</td>
+                </tr>
+              `;
+            });
+          }
+        });
+      }
+
+      // Calculate total salary based on attendance
+      function calculateTotalSalary(attendance, perDaySalary) {
+        return Object.values(attendance).reduce((total, status) => {
+          return total + (status === 'present' ? perDaySalary : 0);
+        }, 0);
+      }
+
+      // Create attendance record display
+      function createAttendanceRecord(attendance, employeeKey) {
+        return Object.keys(attendance).map(date => {
+          const status = attendance[date];
+          return `<div class="attendance-switch">
+                    <input type="checkbox" id="${date}_${employeeKey}" ${status === 'present' ? 'checked' : ''} onchange="updateAttendance('${employeeKey}', '${date}', this.checked)">
+                    <label class="switch-label">${date}: ${status}</label>
+                  </div>`;
+        }).join('');
+      }
+
+      // Mark attendance based on input date
+      window.markAttendance = function (employeeKey) {
+        const dateInput = document.getElementById(date_${employeeKey});
+        const attendanceDate = dateInput.value;
+
+        if (attendanceDate) {
+          const employee = employeesData[employeeKey];
+          const newAttendance = employee.attendance[attendanceDate] === 'present' ? 'absent' : 'present'; // Toggle attendance
+
+          // Update attendance in the database
+          firebase.database().ref('employees/' + employeeKey).child('attendance').child(attendanceDate).set(newAttendance);
+          loadEmployees(); // Reload the employee list
+        } else {
+          alert('Please select a date.');
+        }
+      };
+
+      // Update attendance for a specific date
+      window.updateAttendance = function (employeeKey, date, isPresent) {
+        const status = isPresent ? 'present' : 'absent';
+        firebase.database().ref('employees/' + employeeKey).child('attendance').child(date).set(status);
+        loadEmployees(); // Reload the employee list
+      };
+
+      // Load employees on page load
+      loadEmployees();
+
+    } catch (e) {
+      console.error(e);
+      loadEl.textContent = 'Error loading the Firebase SDK, check the console.';
+    }
+  });
+</script>
+
+</body>
+</html>
